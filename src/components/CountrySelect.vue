@@ -1,9 +1,9 @@
 <template>
   <select v-model="selected" @change="onChange()">
     <option value="0">Select Country</option>
-    <!-- <option :v-for="country in countries" :value="country.ID">
-        {{country.Country}}    
-    </option> -->
+    <option v-for="country in countries" :key="country" :value="country.ID">
+      {{ country.Country }}
+    </option>
   </select>
 </template>
 
@@ -19,9 +19,9 @@ export default {
   },
   methods: {
     onChange() {
-      const country = this.country.find((item) => item.ID === this.selected);
-      console.log('country!!', country);
-      this.$emit('get-country');
+      const country = this.countries.find((item) => item.ID === this.selected);
+      // console.log('country!!', country);
+      this.$emit('get-country', country);
     },
   },
 };
@@ -29,7 +29,6 @@ export default {
 
 <style>
 select {
-  /* border: 1px solid red; */
   margin-top: 2rem;
   padding: 0.5rem;
   width: 100%;
